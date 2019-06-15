@@ -1,23 +1,42 @@
 import React, { Component } from 'react'
-import Header from './Header'
+import Grid from '@material-ui/core/Grid'
 import { Switch, Route } from 'react-router-dom'
+
+import Header from './Header'
 import PostList from './PostList'
 import PostDetails from './PostDetails'
 import Draft from './Draft'
+import SideBar from './SideBar'
+import LandingPage from './LandingPage'
 
 class App extends Component {
   render() {
     return (
-      <div className="center w85">
+      <>
+      <Grid
+          container
+          direction="row-reverse"
+          justify="center"
+          alignItems="center"
+          >
+       
+        <Grid item xs={6}>
         <Header />
-      <div className="ph3 pv1 background-gray">
+        </Grid>
+
+        <Grid item xs={6}>
+        <SideBar />
+        </Grid>
+        <Grid item xs={9}>
           <Switch>
-            <Route exact path="/" component={PostList} />
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/art" component={PostList} />
             <Route exact path="/create" component={Draft} />
             <Route exact path="/content/:id" component={PostDetails}/>
           </Switch>
-        </div>
-      </div>
+        </Grid>
+      </Grid>
+    </>
     )
   }
 }

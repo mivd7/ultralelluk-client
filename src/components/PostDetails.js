@@ -7,17 +7,19 @@ const FEED_QUERY = gql`query Post ($id: ID!){
       id
       title
       content
+      author {
+        id
+        name
+      }
   }
 }`
 
 export default class PostDetails extends Component {
   render() {
-    console.log(this.props.match.params.id)
-    const postId = this.props.match.params.id
+    // const postId = this.props.match.params.id
     return (
       <>
-      {!postId && <div>loading post</div>}
-       {postId && <Query query={FEED_QUERY} variables={{id: this.props.match.params.id}}>
+       <Query query={FEED_QUERY} variables={{id: this.props.match.params.id}}>
         {({ loading, error, data }) => {
           if (loading) return <div>Fetching</div>
           if (error) return (<div>error {error.message}</div>)
@@ -30,12 +32,13 @@ export default class PostDetails extends Component {
             {post &&
             <>
              <h1>{post.title}</h1>
-              <p>{post.content}</p></>}
+              <p>{post.content}</p>
+              <i>by: {post.author.name}</i>
+            </>}
             </div>
           )
-          // <i>by: {post.author.name}</i>
         }}
-      </Query>}
+      </Query>
       </>
     )
   }

@@ -29,10 +29,13 @@ class PostList extends Component {
           const postsToRender = data.feedPosts
           console.log(postsToRender)
           return (
-            <div>
-              {!postsToRender && <div>loading...</div>}
-              {postsToRender && postsToRender.map(post => <div className="posts-container">
+            <div className="posts-container">
+               <h2><Link to={"/create"}>
+                Nieuwe bijdrage posten
+              </Link></h2>
+              {postsToRender.map(post => <div className="posts-container">
                 <Link to={`/content/${post.id}`}><Post key={post.id} post={post} author={post.author} /></Link></div>)}
+              
             </div>
           )
         }}
