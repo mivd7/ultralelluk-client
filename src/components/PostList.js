@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import {Link} from 'react-router-dom'
 import gql from 'graphql-tag'
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 import Post from './PostInfo'
 
 const FEED_QUERY = gql`
@@ -30,9 +32,11 @@ class PostList extends Component {
           console.log(postsToRender)
           return (
             <div className="posts-container">
-               <h2><Link to={"/create"}>
-                Nieuwe bijdrage posten
-              </Link></h2>
+               <Link to={"/create"}>
+                <Fab color="primary" aria-label="Add">
+                  <AddIcon />
+                </Fab>
+              </Link>
               {postsToRender.map(post => <div className="posts-container">
                 <Link to={`/content/${post.id}`}><Post key={post.id} post={post} author={post.author} /></Link></div>)}
               

@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
+import TextField from '@material-ui/core/TextField'
+import {makeStyles} from '@material-ui/core'
 
 const CREATE_DRAFT = gql`mutation Post($title: String! $content: String!, $published: Boolean!, $userId: ID!) {
   createDraft(title: $title, content: $content, published: $published, userId: $userId) {
@@ -12,45 +14,55 @@ const CREATE_DRAFT = gql`mutation Post($title: String! $content: String!, $publi
 }
 `
 
-class Draft extends Component {
-  state = {
-    title: '',
-    content: '',
-    mediaUrl: '',
+const useStyles = makeStyles({
+  root: {
+    padding: '20px',
+  },
+  input1: {
+    height: 50
+  },
+  content: {
+    minWidth: '200px'
   }
+});
 
-  render() {
-    const { title, content, mediaUrl } = this.state
-    //hard-coded for now
-    const dummyUser = 'cjwxm86fw006u076211f1khl6'
+const Draft = () => {
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [mediaUrl, setMediaUrl] = useState('')
+  const styles = useStyles()
+  const dummyUser = 'cjwxm86fw006u076211f1khl6'
     return (
-      <div className="form-container">
-        <div className="flex flex-column mt3">
-          <label>Voeg een titel toe:</label>
+      <div className={styles.root}>
           <input
             className="mb2"
             value={title}
-            onChange={e => this.setState({ title: e.target.value })}
+            onChange={e => setTitle(e.target.value)}
             type="text"
             placeholder="Titel"
-          />
-          <label>Voeg inhoud toe:</label>
-          <textarea
-            className="mb2__content"
+          /><br/>
+          <div className={styles.content}>
+          <TextField
+            id="outlined-multiline-flexible"
+            label="Inhoud"
+            multiline={true}
             value={content}
-            onChange={e => this.setState({ content: e.target.value })}
-            type="text"
-            placeholder="Inhoud"
-          />
+            rows={20}
+            maxRows={50}
+            onChange={e => setContent(e.target.value)}
+            className={styles.content}
+            margin="normal"
+            variant="outlined"
+            fullWidth={true}
+          /></div>
           <label>Link naar media</label>
           <input
             className="mb2"
             value={mediaUrl}
-            onChange={e => this.setState({ content: e.target.value })}
+            onChange={e => setMediaUrl(e.target.value)}
             type="text"
             placeholder="Voeg een link naar foto of video toe"
-          />
-        </div>
+          /><br/>
         <Mutation mutation={CREATE_DRAFT}
                   variables={{ title, content, published: false, userId: dummyUser }} >
             {draft => <div><button onClick={draft}>Maak concept aan</button></div>}
@@ -62,7 +74,6 @@ class Draft extends Component {
         </Mutation>
       </div>
     )
-  }
 }
 
 export default Draft

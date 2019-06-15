@@ -42,7 +42,7 @@ input {
   max-width: 250px;
 }
 
-.mb2__content {
+.form-container__content {
   max-width: 500px;
   min-height: 320px;
   padding-top: 0;
@@ -85,6 +85,10 @@ ul:visited {
   border: 0px 1px black;
 }
 
+.posts-container {
+  padding: 25px;
+}
+
 .posts-container a {
   text-decoration: none;
   color: black;
@@ -94,4 +98,8 @@ ul:visited {
 
 .posts-container h2 {
   color: purple;
+}
+
+#outlined-dense-multiline {
+  min-width: 200px;
 }

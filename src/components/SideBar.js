@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Link } from 'react-router-dom';
 import {makeStyles} from '@material-ui/core/styles'
 
@@ -17,9 +17,12 @@ const SideBar = (props) => {
     return (
         <div className={classes.root}>
         <ul>
-        <li><Link to={`/`}>Home</Link></li><br/>
-        <li><Link to={`/create`}>Voeg iets toe...</Link></li><br/>
-        <li><Link to={`/calendar`}>Kalender</Link></li><br/>
+        <li><Link to={`/`}>UltraHomepage</Link></li><br/>
+        <li><Link to={`/create`}>UltraNieuw</Link></li><br/>
+        <li><Link to={`/calendar`}>UltraKalender</Link></li><br/>
+        <li><Link to={`/media`}>UltraFotos en UltraVideos</Link></li><br/>
+        <li><Link to={`/art`}>UltraCreaties</Link></li><br/>
+
                   </ul>
 
         </div>
