@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Query } from 'react-apollo'
+import {Link} from 'react-router-dom'
 import gql from 'graphql-tag'
-import Post from './Post'
+import Post from './PostInfo'
 
 const FEED_QUERY = gql`
   {
@@ -30,7 +31,8 @@ class PostList extends Component {
           return (
             <div>
               {!postsToRender && <div>loading...</div>}
-              {postsToRender && postsToRender.map(post => <Post key={post.id} post={post} author={post.author} />)}
+              {postsToRender && postsToRender.map(post => <div className="posts-container">
+                <Link to={`/content/${post.id}`}><Post key={post.id} post={post} author={post.author} /></Link></div>)}
             </div>
           )
         }}

@@ -16,17 +16,15 @@ class Draft extends Component {
   state = {
     title: '',
     content: '',
-    //later false
-    published: true,
     mediaUrl: '',
   }
 
   render() {
-    const { title, content, mediaUrl, published } = this.state
+    const { title, content, mediaUrl } = this.state
     //hard-coded for now
     const dummyUser = 'cjwxm86fw006u076211f1khl6'
     return (
-      <div>
+      <div className="form-container">
         <div className="flex flex-column mt3">
           <label>Voeg een titel toe:</label>
           <input
@@ -37,7 +35,7 @@ class Draft extends Component {
             placeholder="Titel"
           />
           <label>Voeg inhoud toe:</label>
-          <input
+          <textarea
             className="mb2__content"
             value={content}
             onChange={e => this.setState({ content: e.target.value })}
@@ -54,19 +52,17 @@ class Draft extends Component {
           />
         </div>
         <Mutation mutation={CREATE_DRAFT}
-                    variables={{ title, content, published, userId: dummyUser }} >
-            {draft => <div><button onClick={draft}>Submit</button></div>}
+                  variables={{ title, content, published: false, userId: dummyUser }} >
+            {draft => <div><button onClick={draft}>Maak concept aan</button></div>}
         </Mutation>
-  
+        <br/>
+        <Mutation mutation={CREATE_DRAFT}
+                  variables={{ title, content, published: true, userId: dummyUser }} >
+            {draft => <div><button onClick={draft}>Publiceer</button></div>}
+        </Mutation>
       </div>
     )
   }
 }
 
 export default Draft
-
-// {published === false && 
-//   <Mutation mutation={CREATE_DRAFT} variables={{ title, content, published, userId: dummyUser }}> 
-//     {() => (<button onClick={`... you'll implement this 🔜`}>
-//               Publiceer post
-//             </button> )} </Mutation>}

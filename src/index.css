@@ -43,6 +43,16 @@ input {
 }
 
 .mb2__content {
-  min-width: 240px;
+  max-width: 500px;
   min-height: 320px;
+  padding-top: 0;
+  padding-left: 0;
+  line-height: 1em;
+}
+.mb2 {
+  min-width: 50%;
+}
+
+.form-container {
+  margin-left: 25%;
 }
