@@ -83,6 +83,7 @@ ul:visited {
   text-decoration: none;
   padding: 10px;
   border: 0px 1px black;
+  margin-bottom: 10px;
 }
 
 .posts-container {
@@ -100,6 +101,7 @@ ul:visited {
   color: purple;
 }
 
-#outlined-dense-multiline {
-  min-width: 200px;
+.calendar-container {
+  margin-top: 10px;
+  padding: 10px;
 }
