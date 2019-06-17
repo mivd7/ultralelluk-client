@@ -18,7 +18,3 @@ export function setCalendar(currentYear, years, months){
       }
     return arr
 }
-
-// console.log(fiveYears)
-// const thisYear = fiveYears.filter(x => x.year === 2019)
-// console.log(thisYear)

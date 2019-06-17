@@ -32,13 +32,12 @@ class CalendarContainer extends Component {
         {calendar && <>
         <div className="calendar-header">
           <Button onClick={() => this.setState({year: lastYear})}>{lastYear}</Button>
-          <Button>{year}</Button>
           <Button onClick={() => this.setState({year: nextYear})}>{year + 1}</Button>
-        </div>
-                    <h1>{year}</h1>
 
-        <Grid container spacing={0}>
-          {calendar.map(x => <Grid container xs={12} columns={3} rows={4}><CalendarRow year={year} calendar={x} months={months}/></Grid>)}
+          <h1>{year}</h1>
+        </div>
+        <Grid container spacing={1}>
+          {calendar.map(data => <CalendarRow year={year} calendar={data} months={months}/>)[0]}
         </Grid></>}
       </div>
     )
