@@ -19,10 +19,8 @@ export default function CalendarSquare(props) {
     console.log(props)
     return (
       <div className={classes.root}>
-        <Grid item xs={1}>
               {!days && <Paper className={classes.paper}>{month.monthName} {year}</Paper>}
               {days && days.map(day => <Paper className={classes.paper}>{day} {selectedMonth}</Paper>)}
-        </Grid>
       </div>
     );
 }

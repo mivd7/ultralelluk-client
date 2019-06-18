@@ -16,13 +16,15 @@ class CalendarRow extends Component {
     console.log(this.state)
     return (
       <React.Fragment>
-      <Button onClick={() => this.setState({triggerMonthView: false})}>BACK</Button>
+      
       <br/>
      {triggerMonthView === false && months.map(month => <Grid container xs={4} cols={3} rows={4}>
-            <Button onClick={() => this.setState({ triggerMonthView: !triggerMonthView, selectedMonth: month.monthName, days: getDaysByMonthNo(month.monthNo, months)})}> --> </Button>
+          <Grid item xs={0}>
+              <Button onClick={() => this.setState({ triggerMonthView: !triggerMonthView, selectedMonth: month.monthName, days: getDaysByMonthNo(month.monthNo, months)})}> --> </Button>
               <CalendarSquare month={month} year={year} calendar={calendar} triggerMonthView={triggerMonthView}/>
+          </Grid>
       </Grid>)}
-      {triggerMonthView === true && <><Grid container xs={4} cols={7} rows={4}>
+      {triggerMonthView === true && <><Grid container xs={4} cols={7} rows={4}><Button onClick={() => this.setState({triggerMonthView: false})}>BACK</Button>
              <CalendarSquare calendarInfo={calendar} selectedMonth={selectedMonth} days={days}/>
       </Grid></>}
       </React.Fragment>
