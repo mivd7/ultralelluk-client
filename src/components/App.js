@@ -7,7 +7,7 @@ import PostList from './PostList'
 import PostDetails from './PostDetails'
 import Draft from './Draft'
 import SideBar from './SideBar'
-import Calendar from './Calendar'
+import CalendarContainer from './CalendarContainer'
 import LandingPage from './LandingPage'
 
 class App extends Component {
@@ -33,7 +33,7 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/art" component={PostList} />
             <Route exact path="/create" component={Draft} />
-            <Route exact path="/calendar" component={Calendar} />
+            <Route exact path="/calendar" component={CalendarContainer} />
             <Route exact path="/content/:id" component={PostDetails}/>
           </Switch>
         </Grid>
