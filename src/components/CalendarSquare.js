@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,14 +15,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function CalendarSquare(props) {
     const classes = useStyles()
-    const {month, year, monthDays, calendar, monthView} = props
+    const {month, year, days, selectedMonth} = props
     console.log(props)
     return (
-      
       <div className={classes.root}>
-        <Grid item xs={0}>
-              {!monthDays && <Paper className={classes.paper}>{month.monthName} {year}</Paper>}
-              {monthDays && monthDays.map(day => <Paper className={classes.paper}>{day}</Paper>)}
+        <Grid item xs={1}>
+              {!days && <Paper className={classes.paper}>{month.monthName} {year}</Paper>}
+              {days && days.map(day => <Paper className={classes.paper}>{day} {selectedMonth}</Paper>)}
         </Grid>
       </div>
     );

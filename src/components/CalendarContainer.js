@@ -36,7 +36,7 @@ class CalendarContainer extends Component {
 
           <h1>{year}</h1>
         </div>
-        <Grid container spacing={1}>
+        <Grid container spacing={0}>
           {calendar.map(data => <CalendarRow year={year} calendar={data} months={months}/>)[0]}
         </Grid></>}
       </div>

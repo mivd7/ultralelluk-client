@@ -18,3 +18,17 @@ export function setCalendar(currentYear, years, months){
       }
     return arr
 }
+
+export function getDaysByMonthNo(monthNo, monthsArr) {
+  {
+  var i;
+  for (i = 0; i < 12; i++) { 
+      if(monthsArr[i]['monthNo'] == monthNo)
+      return monthsArr[i]['days'];
+  }
+  }
+}
+
+export function filterMonthName(months, x){
+  months.filter(month => month.monthName === x)
+}

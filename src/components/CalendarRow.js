@@ -1,27 +1,30 @@
 import React, { Component } from 'react'
 import {Button, Grid} from '@material-ui/core'
 import CalendarSquare from './CalendarSquare'
+import {getDaysByMonthNo} from '../lib/dateLogic'
 
 class CalendarRow extends Component {
   state = {
-    monthView: false
+    triggerMonthView: false,
+    days: [],
+    selectedMonth: null,
   }
+
   render() {
     const {months, year, calendar} = this.props
-    const {monthView} = this.state
-    const days = months.map(month => month.days)
-    console.log(days)
-    console.log(monthView)
+    const {triggerMonthView, days, selectedMonth} = this.state
+    console.log(this.state)
     return (
       <React.Fragment>
-     {monthView === false && months.map(month => <Grid container xs={4} cols={3} rows={4}>
-            <Button onClick={() => this.setState({ monthView: !monthView })}> --> </Button>
-              <CalendarSquare month={month} year={year} calendar={calendar} monthView={monthView}/>
+      <Button onClick={() => this.setState({triggerMonthView: false})}>BACK</Button>
+      <br/>
+     {triggerMonthView === false && months.map(month => <Grid container xs={4} cols={3} rows={4}>
+            <Button onClick={() => this.setState({ triggerMonthView: !triggerMonthView, selectedMonth: month.monthName, days: getDaysByMonthNo(month.monthNo, months)})}> --> </Button>
+              <CalendarSquare month={month} year={year} calendar={calendar} triggerMonthView={triggerMonthView}/>
       </Grid>)}
-      {monthView === false && <Grid container xs={7} cols={7} rows={4}>
-            <Button onClick={() => this.setState({ monthView: !monthView })}> --> </Button>
-              <CalendarSquare month={months} year={year} calendar={calendar} monthView={monthView} monthDays={days}/>
-            </Grid>}
+      {triggerMonthView === true && <><Grid container xs={4} cols={7} rows={4}>
+             <CalendarSquare calendarInfo={calendar} selectedMonth={selectedMonth} days={days}/>
+      </Grid></>}
       </React.Fragment>
     )
   }
