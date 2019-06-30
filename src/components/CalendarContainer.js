@@ -27,18 +27,18 @@ class CalendarContainer extends Component {
     console.log(yearsArr)
     if (!calendar) return (<div>loading</div>)
     return (
-      <div className="calendar-container">
+      <div>
         {!calendar && <div>loading...</div>}
         {calendar && <>
-        <div className="calendar-header">
+        <div>
           <Button onClick={() => this.setState({year: lastYear})}>{lastYear}</Button>
           <Button onClick={() => this.setState({year: nextYear})}>{year + 1}</Button>
+          <Button onClick={() => this.setState({triggerMonthView: false})}>BACK</Button>
 
           <h1>{year}</h1>
         </div>
-        <Grid container spacing={0}>
           {calendar.map(data => <CalendarRow year={year} calendar={data} months={months}/>)[0]}
-        </Grid></>}
+       </>}
       </div>
     )
   }

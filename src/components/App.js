@@ -7,8 +7,9 @@ import PostList from './PostList'
 import PostDetails from './PostDetails'
 import Draft from './Draft'
 import SideBar from './SideBar'
-import CalendarContainer from './CalendarContainer'
+import GoogleCalendar from './GoogleCalendar'
 import LandingPage from './LandingPage'
+import Login from './Login'
 
 class App extends Component {
   render() {
@@ -33,8 +34,9 @@ class App extends Component {
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/art" component={PostList} />
             <Route exact path="/create" component={Draft} />
-            <Route exact path="/calendar" component={CalendarContainer} />
+            <Route exact path="/calendar" component={GoogleCalendar} />
             <Route exact path="/content/:id" component={PostDetails}/>
+            <Route exact path="/login" component={Login} />
           </Switch>
         </Grid>
       </Grid>

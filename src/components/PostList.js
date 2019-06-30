@@ -8,7 +8,7 @@ import Post from './PostInfo'
 
 const FEED_QUERY = gql`
   {
-    feedPosts {
+    feed {
         id
         title
         content
@@ -28,7 +28,7 @@ class PostList extends Component {
           if (loading) return <div>Fetching</div>
           if (error) return <div>Error</div>
     
-          const postsToRender = data.feedPosts
+          const postsToRender = data.feed
           console.log(postsToRender)
           return (
             <div className="posts-container">
