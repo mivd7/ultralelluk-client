@@ -4,8 +4,8 @@ import gql from 'graphql-tag'
 import TextField from '@material-ui/core/TextField'
 import {makeStyles} from '@material-ui/core'
 
-const CREATE_DRAFT = gql`mutation Post($title: String! $content: String!, $published: Boolean!, $userId: ID!) {
-  createDraft(title: $title, content: $content, published: $published, userId: $userId) {
+const CREATE_DRAFT = gql`mutation Post($title: String! $content: String! $published: Boolean!) {
+  createDraft(title: $title, content: $content, published: $published) {
     id
     title
     content
