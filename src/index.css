@@ -106,3 +106,14 @@ ul:visited {
   margin-top: 10px;
   padding: 25px;
 }
+
+.google-calendar {
+  margin: 25px 75px;
+}
+
+.btn-login {
+  margin-left: 50%;
+}
+.btn-logout {
+  margin: 25px 0px;
+}

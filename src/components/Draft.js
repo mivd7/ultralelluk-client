@@ -36,7 +36,7 @@ const Draft = () => {
   const dummyUser = 'cjwxm86fw006u076211f1khl6'
     return (
       <div className={styles.root}>
-          <input
+          <TextField
             className="mb2"
             value={title}
             onChange={e => setTitle(e.target.value)}
