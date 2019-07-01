@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import { AUTH_TOKEN } from '../constants'
 import UserInfo from './UserInfo'
+import Button from '@material-ui/core/Button'
+
 
 
 class Header extends Component {
@@ -22,13 +24,13 @@ class Header extends Component {
                 this.props.history.push(`/`)
               }}
             >
-              logout
+              <Button>logout</Button>
               <UserInfo token={authToken}/>
 
             </div>
           ) : (
               <Link to="/login" className="ml1 no-underline black">
-                login
+                <Button>login</Button>
             </Link>
             )}
         </div>

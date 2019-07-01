@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
 import {makeStyles} from '@material-ui/core'
 
 const CREATE_DRAFT = gql`mutation Post($title: String! $content: String! $published: Boolean!) {
@@ -65,12 +67,12 @@ const Draft = () => {
           /><br/>
         <Mutation mutation={CREATE_DRAFT}
                   variables={{ title, content, published: false, userId: dummyUser }} >
-            {draft => <div><button onClick={draft}>Maak concept aan</button></div>}
+            {draft => <div><Button onClick={draft}>Maak concept aan</Button></div>}
         </Mutation>
         <br/>
         <Mutation mutation={CREATE_DRAFT}
                   variables={{ title, content, published: true, userId: dummyUser }} >
-            {draft => <div><button onClick={draft}>Publiceer</button></div>}
+            {draft => <div><Button onClick={draft}>Publiceer</Button></div>}
         </Mutation>
       </div>
     )
