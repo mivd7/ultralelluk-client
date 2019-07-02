@@ -2,7 +2,7 @@ import React from 'react';
 import ApiCalendar from 'react-google-calendar-api';
 import Button from '@material-ui/core/Button';
 
-import GoogleCalendar from './GoogleCalendar';
+import GoogleCalendar from './CalendarGate';
 import CreateCalendarItem from './CreateCalendarItem';
     
 export default class CalendarStatus extends React.Component {

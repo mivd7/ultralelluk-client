@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {setCalendar, monthsArr} from '../lib/dateLogic'
+import {setCalendar, monthsArr} from '../../lib/dateLogic'
 import CalendarRow from './CalendarRow'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';

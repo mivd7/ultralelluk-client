@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Button, Grid} from '@material-ui/core'
 import {TableRow} from '@material-ui/core'
 import CalendarSquare from './CalendarSquare'
-import {getDaysByMonthNo} from '../lib/dateLogic'
+import {getDaysByMonthNo} from '../../lib/dateLogic'
 
 class CalendarRow extends Component {
   state = {
