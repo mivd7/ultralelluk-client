@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Calendar from './react-google-calendar/Calendar';
+import UltralellukCalendar from './react-google-calendar/UltralellukCalendar';
 
 const calendarConfig = {
   api_key: process.env.REACT_APP_CALENDAR_KEY,
@@ -18,7 +18,7 @@ export default class GoogleCalendar extends Component {
   render() {
     return (
       <div>
-        <Calendar config={calendarConfig}/>
+        <UltralellukCalendar config={calendarConfig}/>
       </div>
     )
   }

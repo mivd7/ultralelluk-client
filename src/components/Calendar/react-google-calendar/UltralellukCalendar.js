@@ -7,7 +7,7 @@ import googleAPI from  "./utils/googleAPI"
 
 const localizer = Calendar.momentLocalizer(moment)
 
-export default class BigCalendar extends Component {
+export default class UltralellukCalendar extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,7 +28,7 @@ export default class BigCalendar extends Component {
       .then(events => {
         this.setState({ events })
       })
-      .catch(err => { throw new Error(err) })
+      .catch(err => console.log(err))
   }
 
   render = () =>
