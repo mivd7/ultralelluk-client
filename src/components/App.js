@@ -7,7 +7,7 @@ import PostList from './PostList'
 import PostDetails from './PostDetails'
 import Draft from './Draft'
 import SideBar from './SideBar'
-import GoogleCalendar from './Calendar/GoogleCalendar'
+import GoogleCalendar from './GoogleCalendar'
 import LandingPage from './LandingPage'
 import Login from './Login'
 
