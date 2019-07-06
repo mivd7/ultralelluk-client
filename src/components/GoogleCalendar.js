@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import {Calendar} from 'react-big-calendar'
 import axios from 'axios'
+import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import {calendarUrl} from '../constants'
+import moment from 'moment'
+import {sampleEvents} from '../lib/sampleEvents'
+
+const localizer = momentLocalizer(moment)
 
 export default class GoogleCalendar extends Component {
   state = {
@@ -11,25 +15,26 @@ export default class GoogleCalendar extends Component {
   componentDidMount() {
     axios.get(calendarUrl)  
       .then(res => {
-        console.log(res)
         this.setState({ events: res.data });
       })
       .catch(e => console.log(e))
   }
 
   render() {
-    console.log(this.state.events)
     const { events } = this.state
+    if (!events) return (<div>fuck you</div>)
+    const filteredItems = events.items.map(item => {const obj = {id: item.id, title: item.summary, start: item.start.date, end: item.end.date }
+                                                 return obj})
+    console.log(filteredItems)
+    // console.log(events)
     return (
       <div>
       {!events && <div>loading google calendar</div>}
      
-      {events && events.items.map(item => <>
-        <h1>{events.summary}</h1>
-        <h3>{events.description}</h3>
-        <ul key={item.id}><li>{item.summary}<br/>
-        <i>{item.start.date}</i></li></ul>
-      </>)}
-    </div>
+      {events && <Calendar
+                    localizer={localizer}
+                    events={filteredItems}
+                    defaultView={Views.AGENDA} />}
+  </div>
   )}
 }
