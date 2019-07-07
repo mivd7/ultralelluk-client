@@ -8,6 +8,8 @@ import {
   DateTimePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
     
 export default class CalendarForm extends React.Component {
     state = {
@@ -18,7 +20,6 @@ export default class CalendarForm extends React.Component {
     }
 
     createRequest(req) {
-      console.log(req)
       ApiCalendar.createEvent(req, process.env.REACT_APP_CALENDAR_ID)
                  .then(res => console.log(res))
                  .catch(err => window.alert('log in bij google!'))
@@ -35,19 +36,11 @@ export default class CalendarForm extends React.Component {
 
     render() {
       const {summary, start, end} = this.state
-      console.log(summary)
-      console.log(start)
-      console.log(end)
-      
       return(
         <div>
-          {this.props.loginStatus !== true && <Button
-                  onClick={(e) => this.handleItemClick(e, 'sign-in')}
-                  variant="contained"
-                  color="primary"
-              >
-                Item Toevoegen
-              </Button>}
+          {this.props.loginStatus !== true &&  <Fab color="primary" aria-label="Add">
+                  <AddIcon onClick={e => this.handleItemClick(e, 'sign-in')}/>
+                </Fab>}
           {this.props.loginStatus && <div className="calendar-form">
           <h2>Voeg een agenda item toe:</h2>
             <TextField
@@ -63,8 +56,7 @@ export default class CalendarForm extends React.Component {
                             onChange={e => this.setState({start: {dateTime: moment(e).toISOString()}})} />
             <DateTimePicker label="Tot?"
                             value={moment(end.dateTime).format("YYYY-MM-DDTHH:mm")}
-                            onChange={e => this.setState({end: {dateTime: moment(e).toISOString()}})} />
-                            
+                            onChange={e => this.setState({end: {dateTime: moment(e).toISOString()}})} />                           
           </MuiPickersUtilsProvider>
           <br/>
           <br/>

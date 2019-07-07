@@ -43,18 +43,8 @@ export default class GoogleCalendar extends Component {
     return obj
   }
 
-  setStartingPoint(dateTime) {
-    let date = dateTime.split('T') 
-    let splitDate = date.shift().split('-')
-    splitDate.pop()
-    splitDate.push('01')
-    let startDate = splitDate.join('-')
-    return startDate.concat('T' + date);
-  }
-
   render() {
     const { events } = this.state
-    console.log(this.setStartingPoint(today))
     if (!events) return (<div>loading events</div>)
     const filteredItems = events.items.map(item => this.setCalendarItem(item) )
     return (
@@ -63,11 +53,8 @@ export default class GoogleCalendar extends Component {
         <CustomCalendar
             localizer={localizer}
             events={filteredItems}
-            step={60}
             formats={formats}
-            defaultView={Views.MONTH }
             views={['month','week','day', 'agenda']}
-            defaultDate={this.setStartingPoint(today)}
           /><br/>
          <CalendarForm loginStatus={this.props.loginStatus}/>
     </div>  )}
