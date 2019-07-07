@@ -8,8 +8,6 @@ import {
   DateTimePicker,
   MuiPickersUtilsProvider,
 } from "@material-ui/pickers";
-
-const dummyEvent = {start: {dateTime: "2019-08-08T10:00:00.000-07:00"}, end: {dateTime: "2019-08-09T10:00:00.000-07:30"}, summary: 'blabla event'}
     
 export default class CalendarForm extends React.Component {
     state = {
@@ -50,7 +48,7 @@ export default class CalendarForm extends React.Component {
               >
                 Item Toevoegen
               </Button>}
-          {this.props.loginStatus && <>
+          {this.props.loginStatus && <div className="calendar-form">
           <h2>Voeg een agenda item toe:</h2>
             <TextField
                 label="Wat?"
@@ -68,10 +66,11 @@ export default class CalendarForm extends React.Component {
                             onChange={e => this.setState({end: {dateTime: moment(e).toISOString()}})} />
                             
           </MuiPickersUtilsProvider>
-          
+          <br/>
+          <br/>
           <Button variant="contained"
                   color="primary"
-                  onClick={() => this.createRequest(this.state)}>Toevoegen</Button></>}
+                  onClick={() => this.createRequest(this.state)}>Toevoegen</Button></div>}
         </div>
       )
     }

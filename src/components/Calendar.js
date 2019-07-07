@@ -38,15 +38,16 @@ export default class CalendarStatus extends React.Component {
             <div>
             <h1>UltraAgenda</h1>
             <h3>Voor alle Ultralelluke voorstellingen en repetities</h3>
-            {this.state.sign && <><Button
+            {this.state.sign && <><div className="btn-signout"><Button
                   onClick={(e) => this.handleItemClick(e, 'sign-out')}
                   variant="contained"
                   color="primary"
               >
                 Uitloggen bij Google
               </Button>
-              <GoogleCalendar loginStatus={this.state.sign}/>
-              </>
+              </div>
+              <div className="google-calendar">
+              <GoogleCalendar loginStatus={this.state.sign}/> </div></>
            }
             {!this.state.sign && <>
               <GoogleCalendar loginStatus={this.state.sign}/>
