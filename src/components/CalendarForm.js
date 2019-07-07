@@ -8,7 +8,6 @@ import moment from 'moment';
 export default class CalendarForm extends React.Component {
     state = {
       start: { dateTime: '' },
-      //string => string + 'Z',
       end: { dateTime: '' },
       description: '',
     }
@@ -16,8 +15,8 @@ export default class CalendarForm extends React.Component {
     createRequest(req) {
       console.log(req)
       ApiCalendar.createEvent(req, process.env.REACT_APP_CALENDAR_ID)
-                  .then(res => console.log(res))
-                  .catch(err => window.alert('log in bij google!'))
+                 .then(res => console.log(res))
+                 .catch(err => window.alert('log in bij google!'))
     }
 
     handleItemClick = (event, name) => {
