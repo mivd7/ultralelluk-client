@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
 import axios from 'axios'
-import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
+import { Calendar, momentLocalizer } from 'react-big-calendar'
 import {calendarUrl} from '../constants'
 import moment from 'moment'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import CalendarForm from './CalendarForm';
 
 const localizer = momentLocalizer(moment)
+// let allViews = Object.keys(Views).map(k => Views[k])
+
+const formats = {
+  agendaHeaderFormat: ({start, end}) => {
+      return (moment.utc(start).format('ddd DD/MM/YYYY') + ' - ' + moment.utc(end).format('DD/MM/YYYY') );
+  },
+  agendaTimeFormat: date => moment(date).format('HH:mm'),
+  agendaDateFormat: date => moment(date).format('ddd DD/MM/YYYY')
+}
 
 export default class GoogleCalendar extends Component {
   state = {
@@ -20,19 +30,31 @@ export default class GoogleCalendar extends Component {
       .catch(e => console.log(e))
   }
 
+  setCalendarItem(item) {
+    const obj = {
+      id: item.id, 
+      title: item.summary, 
+      start: item.start.date || item.start.dateTime, 
+      end: item.end.date || item.start.dateTime }
+    return obj
+  }
+
   render() {
     const { events } = this.state
     if (!events) return (<div>loading events</div>)
-    const filteredItems = events.items.map(item => {const obj = {id: item.id, title: item.summary, start: item.start.date, end: item.end.date }
-                                                 return obj})
-    console.log(filteredItems)
-    console.log(events)
+    const filteredItems = events.items.map(item => this.setCalendarItem(item) )
     return (
-      <div>     
-        <Calendar localizer={localizer}
-                  events={filteredItems}
-                  defaultView={Views.AGENDA} />
-        <a href={`https://calendar.google.com/calendar?cid=NDlmaXAzcWgyMGQzMGp0N2VyNm4xbzMwdm9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ`}>Voeg een event toe</a>
+      <div className="row calendar body">     
+        <Calendar
+            localizer={localizer}
+            events={filteredItems}
+            step={60}
+            formats={formats}
+            defaultView={'agenda'}
+            views={['month','week','day', 'agenda']}
+            defaultDate={new Date()}
+          /><br/>
+         <CalendarForm loginStatus={this.props.loginStatus}/>
     </div>
   )}
 }
