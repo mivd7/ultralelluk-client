@@ -107,13 +107,15 @@ ul:visited {
   padding: 25px;
 }
 
+.calendar-form {
+  margin-bottom: 25px;
+  border: dotted 2px 5px;
+}
 .google-calendar {
-  margin: 25px 75px;
+  margin: 75px 10px;
 }
 
-.btn-login {
-  margin-left: 50%;
-}
-.btn-logout {
-  margin: 25px 0px;
+.btn-signout {
+  display: block;
+  float: right;
 }
