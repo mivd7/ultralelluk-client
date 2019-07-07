@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Calendar, momentLocalizer } from 'react-big-calendar'
+import { Calendar, Views, momentLocalizer } from 'react-big-calendar'
 import {calendarUrl} from '../constants'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import CalendarForm from './CalendarForm';
+import CustomCalendar from './CustomCalendar'
 
 const localizer = momentLocalizer(moment)
 const today = moment(new Date()).toISOString()
@@ -13,8 +14,11 @@ const formats = {
   agendaHeaderFormat: ({start, end}) => {
       return (moment.utc(start).format('MMM YYYY') + ' tot ' + moment.utc(end).format('MMM YYYY'));
   },
+  monthHeaderFormat: ({start, end}) => {
+    return (moment.utc(start).format('MMM YYYY') + ' tot ' + moment.utc(end).format('MMM YYYY'));
+  },
   agendaTimeFormat: date => moment(date).format('HH:mm'),
-  agendaDateFormat: date => moment(date).format('ddd DD/MM/YYYY')
+  agendaDateFormat: date => moment(date).format('ddd DD/MM/YYYY'),
 }
 
 export default class GoogleCalendar extends Component {
@@ -56,12 +60,12 @@ export default class GoogleCalendar extends Component {
     return (
       <div className="row calendar body">
         
-        <Calendar
+        <CustomCalendar
             localizer={localizer}
             events={filteredItems}
             step={60}
             formats={formats}
-            defaultView={'agenda'}
+            defaultView={Views.MONTH }
             views={['month','week','day', 'agenda']}
             defaultDate={this.setStartingPoint(today)}
           /><br/>
