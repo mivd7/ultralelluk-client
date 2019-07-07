@@ -54,7 +54,7 @@ export default class GoogleCalendar extends Component {
             localizer={localizer}
             events={filteredItems}
             formats={formats}
-            views={['month','week','day', 'agenda']}
+            views={['month']}
           /><br/>
          <CalendarForm loginStatus={this.props.loginStatus}/>
     </div>  )}
