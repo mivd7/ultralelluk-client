@@ -51,11 +51,7 @@ export default class CalendarStatus extends React.Component {
            }
             {!this.state.sign && <>
               <GoogleCalendar loginStatus={this.state.sign}/>
-<<<<<<< HEAD
-            <br/>
-=======
               <br/>
->>>>>>> feature/google
              </>}</div>
             );
         }
