@@ -13,7 +13,7 @@ const CustomCalendar = ({ localizer, events, views }) => {
           step={60}
           showMultiDayTimes
           defaultDate={new Date()}
-          onSelectSlot={e => console.log(e)}
+          onSelectSlot={() => {}}
       />
       </div>
     )

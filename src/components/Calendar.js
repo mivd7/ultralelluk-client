@@ -18,7 +18,6 @@ export default class CalendarStatus extends React.Component {
         
         handleItemClick = (event, name) => {
           if (name === 'sign-in') {
-            console.log(event)
             ApiCalendar.handleAuthClick();
           } else if (name === 'sign-out') {
             ApiCalendar.handleSignoutClick();
@@ -33,7 +32,6 @@ export default class CalendarStatus extends React.Component {
         }
         
         render() {
-          console.log(this.state.sign)
             return (
             <div>
             <h1>UltraAgenda</h1>

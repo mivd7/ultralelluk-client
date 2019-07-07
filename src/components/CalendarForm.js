@@ -27,7 +27,6 @@ export default class CalendarForm extends React.Component {
 
     handleItemClick = (event, name) => {
       if (name === 'sign-in') {
-        console.log(event)
         ApiCalendar.handleAuthClick();
       } else if (name === 'sign-out') {
         ApiCalendar.handleSignoutClick();

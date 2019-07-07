@@ -29,7 +29,6 @@ class PostList extends Component {
           if (error) return <div>Error</div>
     
           const postsToRender = data.feed
-          console.log(postsToRender)
           return (
             <div className="posts-container">
                <Link to={"/create"}>

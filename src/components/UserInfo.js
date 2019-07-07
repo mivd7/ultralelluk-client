@@ -20,10 +20,8 @@ export default class UserInfo extends Component {
         {({ loading, error, data }) => {
           if (loading) return <div>Fetching</div>
           if (error) return (<div>error {error.message}</div>)
-          console.log(error)
     
           const me = data.me
-          console.log(me)
           return (
             <div>
             {!me && <div>error loading post</div>}

@@ -11,7 +11,6 @@ class Header extends Component {
   
   render() {
     const authToken = localStorage.getItem(AUTH_TOKEN)
-    console.log(authToken)
     return (
         <div className="header-container">
            Ultralelluk HQ
