@@ -1,38 +1,60 @@
-import React from 'react';
-import ApiCalendar from 'react-google-calendar-api';
-import Button from '@material-ui/core/Button'
+import React, { Component } from 'react'
+import axios from 'axios'
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import {calendarUrl} from '../constants'
+import moment from 'moment'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import CalendarForm from './CalendarForm';
 
-export default class GoogleCalendar extends React.Component {
-      constructor(props) {
-        super(props);
-        this.handleItemClick = this.handleItemClick.bind(this);
-      }
-      
-      handleItemClick = (event, name) => {
-        if (name === 'sign-in') {
-          console.log(event)
-          ApiCalendar.handleAuthClick();
-        } else if (name === 'sign-out') {
-          ApiCalendar.handleSignoutClick();
-        }
-      }
+const localizer = momentLocalizer(moment)
+// let allViews = Object.keys(Views).map(k => Views[k])
 
-      render() {
-        return (
-          <div>
-            <div className="btn-logout">
-             <Button
-                  onClick={(e) => this.handleItemClick(e, 'sign-out')}
-                  variant="contained"
-                  color="primary"
-                                >
-                Log uit
-              </Button>
-              </div><br/>
-            <div className="google-calendar">
-              <iframe title="google calendar"src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FAmsterdam&amp;src=NDlmaXAzcWgyMGQzMGp0N2VyNm4xbzMwdm9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%23A79B8E" width="800" height="600" frameborder="0" scrolling="no"></iframe> 
-            </div>
-          </div>
-          );
-      }
+const formats = {
+  agendaHeaderFormat: ({start, end}) => {
+      return (moment.utc(start).format('ddd DD/MM/YYYY') + ' - ' + moment.utc(end).format('DD/MM/YYYY') );
+  },
+  agendaTimeFormat: date => moment(date).format('HH:mm'),
+  agendaDateFormat: date => moment(date).format('ddd DD/MM/YYYY')
+}
+
+export default class GoogleCalendar extends Component {
+  state = {
+    events: null
   }
+
+  componentDidMount() {
+    axios.get(calendarUrl)  
+      .then(res => {
+        this.setState({ events: res.data });
+      })
+      .catch(e => console.log(e))
+  }
+
+  setCalendarItem(item) {
+    const obj = {
+      id: item.id, 
+      title: item.summary, 
+      start: item.start.date || item.start.dateTime, 
+      end: item.end.date || item.start.dateTime }
+    return obj
+  }
+
+  render() {
+    const { events } = this.state
+    if (!events) return (<div>loading events</div>)
+    const filteredItems = events.items.map(item => this.setCalendarItem(item) )
+    return (
+      <div className="row calendar body">     
+        <Calendar
+            localizer={localizer}
+            events={filteredItems}
+            step={60}
+            formats={formats}
+            defaultView={'agenda'}
+            views={['month','week','day', 'agenda']}
+            defaultDate={new Date()}
+          /><br/>
+         <CalendarForm loginStatus={this.props.loginStatus}/>
+    </div>
+  )}
+}

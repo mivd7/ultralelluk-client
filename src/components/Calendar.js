@@ -1,9 +1,7 @@
 import React from 'react';
 import ApiCalendar from 'react-google-calendar-api';
 import Button from '@material-ui/core/Button';
-
 import GoogleCalendar from './GoogleCalendar';
-import CreateCalendarItem from './CreateCalendarItem';
     
 export default class CalendarStatus extends React.Component {
         constructor(props) {
@@ -16,7 +14,7 @@ export default class CalendarStatus extends React.Component {
             ApiCalendar.onLoad(() => {
                 ApiCalendar.listenSign(this.signUpdate);
             });
-        }
+          }
         
         handleItemClick = (event, name) => {
           if (name === 'sign-in') {
@@ -37,18 +35,29 @@ export default class CalendarStatus extends React.Component {
         render() {
           console.log(this.state.sign)
             return (
-            <div>{this.state.sign && <><h2>Welkom Ultrallellukerd </h2>
-              <CreateCalendarItem/>
-              <GoogleCalendar/></>
+            <div>
+            <h1>UltraAgenda</h1>
+            <h3>Voor alle Ultralelluke voorstellingen en repetities</h3>
+            {this.state.sign && <>
+              <GoogleCalendar loginStatus={this.state.sign}/>
+              <Button
+                  onClick={(e) => this.handleItemClick(e, 'sign-out')}
+                  variant="contained"
+                  color="primary"
+              >
+                Uitloggen bij Google
+              </Button></>
            }
-            {!this.state.sign && <div className="btn-login"><Button
+            {!this.state.sign && <>
+              <GoogleCalendar loginStatus={this.state.sign}/>
+              <Button
                   onClick={(e) => this.handleItemClick(e, 'sign-in')}
                   variant="contained"
                   color="primary"
               >
                 Login bij Google
               </Button><br/>
-             </div>}</div>
+             </>}</div>
             );
         }
     }
