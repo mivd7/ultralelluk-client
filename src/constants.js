@@ -2,6 +2,8 @@ export const AUTH_TOKEN = 'auth-token'
 
 export const calendarUrl = `https://www.googleapis.com/calendar/v3/calendars/${process.env.REACT_APP_CALENDAR_ID}/events?key=${process.env.REACT_APP_CALENDAR_KEY}`
 
+//`https://www.googleapis.com/calendar/v3/calendars/49fip3qh20d30jt7er6n1o30vo@group.calendar.google.com/events?key=AIzaSyBg2f1StYrGjdtUQVYBdvjEyrn78xOJAvQ`
+
 // export function getEvents (callback) {
 //   request
 //     .get(url)

@@ -4,8 +4,6 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import moment from 'moment';
-
-const dummyEvent = {start: {dateTime: "2019-08-08T10:00:00.000-07:00"}, end: {dateTime: "2019-08-09T10:00:00.000-07:30"}, summary: 'blabla event'}
     
 export default class CalendarForm extends React.Component {
     state = {
@@ -19,7 +17,7 @@ export default class CalendarForm extends React.Component {
       console.log(req)
       ApiCalendar.createEvent(req, process.env.REACT_APP_CALENDAR_ID)
                   .then(res => console.log(res))
-                  .catch(err => console.log(err))
+                  .catch(err => window.alert('log in bij google!'))
     }
 
     handleItemClick = (event, name) => {
@@ -46,7 +44,7 @@ export default class CalendarForm extends React.Component {
               >
                 Item Toevoegen
               </Button>}
-          <MuiThemeProvider >
+        {this.props.loginStatus && <><MuiThemeProvider >
           <h2>Voeg een agenda item toe:</h2>
           <TextField
               label="Wat?"
@@ -76,9 +74,8 @@ export default class CalendarForm extends React.Component {
               shrink: true,
             }}
           />
-\          </MuiThemeProvider>
-          
-          <Button onClick={() => this.createRequest(this.state)}>Toevoegen</Button>
+      </MuiThemeProvider>
+          <Button onClick={() => this.createRequest(this.state)}>Toevoegen</Button></>}
         </div>
       )
     }

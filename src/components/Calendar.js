@@ -50,13 +50,7 @@ export default class CalendarStatus extends React.Component {
            }
             {!this.state.sign && <>
               <GoogleCalendar loginStatus={this.state.sign}/>
-              <Button
-                  onClick={(e) => this.handleItemClick(e, 'sign-in')}
-                  variant="contained"
-                  color="primary"
-              >
-                Login bij Google
-              </Button><br/>
+            <br/>
              </>}</div>
             );
         }
