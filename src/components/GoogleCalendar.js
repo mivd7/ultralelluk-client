@@ -41,10 +41,12 @@ export default class GoogleCalendar extends Component {
 
   render() {
     const { events } = this.state
+    console.log(events)
     if (!events) return (<div>loading events</div>)
     const filteredItems = events.items.map(item => this.setCalendarItem(item) )
     return (
-      <div className="row calendar body">     
+      <div className="row calendar body">
+        
         <Calendar
             localizer={localizer}
             events={filteredItems}
@@ -55,6 +57,5 @@ export default class GoogleCalendar extends Component {
             defaultDate={new Date()}
           /><br/>
          <CalendarForm loginStatus={this.props.loginStatus}/>
-    </div>
-  )}
+    </div>  )}
 }

@@ -107,6 +107,9 @@ ul:visited {
   padding: 25px;
 }
 
+.calendar-form {
+  padding: 20px;
+}
 .google-calendar {
   margin: 25px 75px;
 }
