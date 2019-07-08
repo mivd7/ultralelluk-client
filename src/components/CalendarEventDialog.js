@@ -6,10 +6,13 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-
+import {editRequest} from '../lib/calendar';
+import {handleClientLoad} from '../utils'
 
 export default function CalendarEventDialog({eventId}) {
   const [open, setOpen] = React.useState(false);
+  console.log(eventId)
+  const testEventId = "5qd4k95idt644lrudt8vo7mi4e"
 
   function handleClickOpen() {
     setOpen(true);
@@ -42,7 +45,7 @@ export default function CalendarEventDialog({eventId}) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={() => handleClientLoad()} color="primary">
             Submit
           </Button>
         </DialogActions>
