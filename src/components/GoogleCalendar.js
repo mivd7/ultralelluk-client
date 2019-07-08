@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Calendar, Views, momentLocalizer } from 'react-big-calendar'
+import { momentLocalizer } from 'react-big-calendar'
 import {calendarUrl} from '../constants'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -8,7 +8,6 @@ import CalendarForm from './CalendarForm';
 import CustomCalendar from './CustomCalendar'
 
 const localizer = momentLocalizer(moment)
-const today = moment(new Date()).toISOString()
 
 const formats = {
   agendaHeaderFormat: ({start, end}) => {
@@ -54,7 +53,7 @@ export default class GoogleCalendar extends Component {
             localizer={localizer}
             events={filteredItems}
             formats={formats}
-            views={['month','week','day', 'agenda']}
+            views={['month']}
           /><br/>
          <CalendarForm loginStatus={this.props.loginStatus}/>
     </div>  )}
